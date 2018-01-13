@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scarlett Coffie Chooser</title>
+    <link rel=stylesheet type="text/css" href="{{url_for('static', filename='app.css')}}">
+    <script type="text/javascript">
+        var INDEX_URL = "{{url_for('index')}}";
+        var REMOVE_ACTOR = "{{url_for('remove_person_from_session')}}";
+        var ADD_ACTOR = "{{url_for('add_person_to_session')}}";
+        var CHOOSE = "{{url_for('choose_from_session')}}"
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='app.js')}}"></script>
+</head>
+<body>
+<div class=page>
+    {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+    {% endfor %}
+    {% block body %}{% endblock %}
+</div>
+</body>
+</html>

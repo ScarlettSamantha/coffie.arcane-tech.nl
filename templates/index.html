@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+<table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>In Session</td>
+        </tr>
+    </thead>
+    <button class="choose">Choose</button>
+    <tbody>
+        {% for person in people %}
+        <tr>
+            <td>{{ person.name }}</td>
+            <td>{{ person.in_session }}</td>
+            <td>
+                {% if person.in_session %}
+                <button class="remove-from-session" attr-data-id="{{ person.id }}" attr-data-action="remove">Remove from session</button>
+                {% else %}
+                <button class="add-to-session" attr-data-id="{{ person.id }}" attr-data-action="add">Add to session</button>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form action="{{ url_for('add_person_to_session') }}" method="post" class="add_actor">
+    <label for="add_actor">Name:</label>
+    <input type="text" class="add_actor_name_input" id="add_actor" name="name">
+    <input type="submit">
+</form>
+
+{% endblock %}
